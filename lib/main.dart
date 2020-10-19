@@ -1,5 +1,9 @@
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+Random random = new Random();
+int randomNumber = random.nextInt(5);
 
 void main() {
   runApp(ColorGameProject());
@@ -12,7 +16,15 @@ class ColorGameProject extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: Scaffold(
-        appBar: AppBar(title: Center(child: Text('welcome'))),
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Center(
+            child: Text(
+              'The Color Guessing Game',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
         body: TheRealGame(),
       ),
     );
@@ -25,6 +37,17 @@ class TheRealGame extends StatefulWidget {
 }
 
 class _TheRealGameState extends State<TheRealGame> {
+  List<Color> ListOfColors = [
+    Color.fromRGBO(255, 255, 0, 1.0),
+    Color.fromRGBO(0, 0, 255, 1.0),
+    Color.fromRGBO(255, 0, 0, 1.0),
+    Color.fromRGBO(0, 255, 0, 1.0),
+    Color.fromRGBO(205, 0, 255, 1.0),
+    Color.fromRGBO(0, 255, 255, 1.0)
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +65,7 @@ class _TheRealGameState extends State<TheRealGame> {
                   margin: EdgeInsets.all(10),
                   child: FlatButton(
                     onPressed: () {},
-                    color: Colors.black,
+                    color: ListOfColors[0],
                   ),
                 ),
               ),
@@ -52,7 +75,7 @@ class _TheRealGameState extends State<TheRealGame> {
                   margin: EdgeInsets.all(10),
                   child: FlatButton(
                     onPressed: () {},
-                    color: Colors.black,
+                    color: ListOfColors[1],
                   ),
                 ),
               )
@@ -70,7 +93,7 @@ class _TheRealGameState extends State<TheRealGame> {
                   margin: EdgeInsets.all(10),
                   child: FlatButton(
                     onPressed: () {},
-                    color: Colors.black,
+                    color: ListOfColors[2],
                   ),
                 ),
               ),
@@ -80,7 +103,7 @@ class _TheRealGameState extends State<TheRealGame> {
                   margin: EdgeInsets.all(10),
                   child: FlatButton(
                     onPressed: () {},
-                    color: Colors.black,
+                    color: ListOfColors[3],
                   ),
                 ),
               )
@@ -98,21 +121,37 @@ class _TheRealGameState extends State<TheRealGame> {
                   height: 240,
                   child: FlatButton(
                     onPressed: () {},
-                    color: Colors.black,
+                    color: ListOfColors[4],
                   ),
                 ),
               ),
               Expanded(
                 child: Container(
-                  height: 290,
-                  margin: EdgeInsets.all(10),
-                  child: FlatButton(
-                    onPressed: () {},
-                    color: Color.fromRGBO(255, 0, 255, 1.0)
-                  ),
-                ),
+                    height: 290,
+                    margin: EdgeInsets.all(10),
+                    color: ListOfColors[5],
+                    child: FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          ListOfColors[4];
+                          print(randomNumber);
+                        });
+                      },
+                    )),
               )
             ],
+          ),
+        ),
+        Container(
+          height: 50,
+          width: 500,
+          color: Colors.black,
+          alignment: Alignment.center,
+          child: Text(
+            'Select the color:' + ListOfColors[randomNumber].toString(),
+            style: TextStyle(color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold),
           ),
         ),
       ],
